@@ -1627,7 +1627,9 @@ class Worksheet(xmlwriter.XMLwriter):
 
         # Excel doesn't allow a single cell to be merged
         if first_row == last_row and first_col == last_col:
-            warn("Can't merge single cell")
+            cell = xl_rowcol_to_cell(first_row, first_col)
+            warn("Can't merge single cell - (%s, Row = %d, Col = %d)"
+                 % (cell, first_row, first_col))
             return
 
         # Swap last row/col with first row/col as necessary
